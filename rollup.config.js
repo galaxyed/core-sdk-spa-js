@@ -13,7 +13,7 @@ import { createApp } from './scripts/oidc-provider';
 
 import pkg from './package.json';
 
-const EXPORT_NAME = 'auth0';
+const EXPORT_NAME = 'icanid';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const shouldGenerateStats = process.env.WITH_STATS === 'true';
@@ -72,7 +72,7 @@ let bundles = [
     input: 'src/index.ts',
     output: {
       name: EXPORT_NAME,
-      file: 'dist/auth0-spa-js.development.js',
+      file: 'dist/icanid-sdk-spa-js.development.js',
       format: 'umd',
       sourcemap: true
     },
@@ -101,7 +101,7 @@ if (isProduction) {
       output: [
         {
           name: EXPORT_NAME,
-          file: 'dist/auth0-spa-js.production.js',
+          file: 'dist/icanid-sdk-spa-js.production.js',
           format: 'umd'
         }
       ],

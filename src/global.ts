@@ -130,6 +130,10 @@ export interface Auth0ClientOptions extends BaseLoginOptions {
    */
   clientId: string;
   /**
+   * The Client Secret found on your Application settings page
+   */
+  clientSecret: string;
+  /**
    * The value in seconds used to account for clock skew in JWT expirations.
    * Typically, this value is no more than a minute or two at maximum.
    * Defaults to 60s.
@@ -194,7 +198,7 @@ export interface Auth0ClientOptions extends BaseLoginOptions {
    * Internal property to send information about the client to the authorization server.
    * @internal
    */
-  auth0Client?: {
+  icanidClient?: {
     name: string;
     version: string;
     env?: { [key: string]: string };
@@ -492,7 +496,7 @@ export interface TokenEndpointOptions {
   client_id: string;
   grant_type: string;
   timeout?: number;
-  auth0Client: any;
+  icanidClient: any;
   useFormData?: boolean;
   [key: string]: any;
 }

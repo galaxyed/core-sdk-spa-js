@@ -14,7 +14,7 @@ export * from './global';
  * @param options The client options
  * @returns An instance of Auth0Client
  */
-export async function createAuth0Client(options: Auth0ClientOptions) {
+export async function createICANIDClient(options: Auth0ClientOptions) {
   const auth0 = new Auth0Client(options);
   await auth0.checkSession();
   return auth0;

@@ -9,7 +9,7 @@ export async function oauthToken(
     timeout,
     audience,
     scope,
-    auth0Client,
+    icanidClient,
     useFormData,
     ...options
   }: TokenEndpointOptions,
@@ -20,7 +20,7 @@ export async function oauthToken(
     : JSON.stringify(options);
 
   return await getJSON<TokenEndpointResponse>(
-    `${baseUrl}/oauth/token`,
+    `${baseUrl}/oauth2/token`,
     timeout,
     audience || 'default',
     scope,
@@ -31,9 +31,10 @@ export async function oauthToken(
         'Content-Type': useFormData
           ? 'application/x-www-form-urlencoded'
           : 'application/json',
-        'Auth0-Client': btoa(
-          JSON.stringify(auth0Client || DEFAULT_AUTH0_CLIENT)
-        )
+        // TODO enable
+        // 'ICANID-Client': btoa(
+        //   JSON.stringify(icanidClient || DEFAULT_AUTH0_CLIENT)
+        // )
       }
     },
     worker,

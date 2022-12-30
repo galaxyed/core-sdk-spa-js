@@ -202,7 +202,7 @@ export class Auth0Client {
     this.scope = getUniqueScopes(
       'openid',
       this.options.authorizationParams.scope,
-      this.options.useRefreshTokens ? 'offline_access' : ''
+      this.options.useRefreshTokens ? 'offline' : ''
     );
 
     this.transactionManager = new TransactionManager(
@@ -235,14 +235,14 @@ export class Auth0Client {
   }
 
   private _url(path: string) {
-    const auth0Client = encodeURIComponent(
-      btoa(JSON.stringify(this.options.auth0Client || DEFAULT_AUTH0_CLIENT))
+    const icanidClient = encodeURIComponent(
+      btoa(JSON.stringify(this.options.icanidClient || DEFAULT_AUTH0_CLIENT))
     );
-    return `${this.domainUrl}${path}&auth0Client=${auth0Client}`;
+    return `${this.domainUrl}${path}&icanidClient=${icanidClient}`;
   }
 
   private _authorizeUrl(authorizeOptions: AuthorizeOptions) {
-    return this._url(`/authorize?${createQueryParams(authorizeOptions)}`);
+    return this._url(`/oauth2/auth?${createQueryParams(authorizeOptions)}`);
   }
 
   private async _verifyIdToken(
@@ -800,16 +800,19 @@ export class Auth0Client {
       delete options.clientId;
     }
 
-    const { federated, ...logoutOptions } = options.logoutParams || {};
+    const { federated, idToken, returnTo, ...logoutOptions } = options.logoutParams || {};
     const federatedQuery = federated ? `&federated` : '';
     const url = this._url(
-      `/v2/logout?${createQueryParams({
+      `/oauth2/sessions/logout?${createQueryParams({
         clientId: options.clientId,
+        id_token_hint: idToken,
+        post_logout_redirect_uri: returnTo,
         ...logoutOptions
       })}`
     );
 
     return url + federatedQuery;
+    // return url;
   }
 
   /**
@@ -828,6 +831,9 @@ export class Auth0Client {
   public async logout(options: LogoutOptions = {}): Promise<void> {
     const { openUrl, ...logoutOptions } = patchOpenUrlWithOnRedirect(options);
 
+    const cache = await this._getIdTokenFromCache();
+    const idToken = cache ? cache.id_token : '';
+
     await this.cacheManager.clear();
 
     this.cookieStorage.remove(this.orgHintCookieName, {
@@ -838,6 +844,8 @@ export class Auth0Client {
     });
     this.userCache.remove(CACHE_KEY_ID_TOKEN_SUFFIX);
 
+    logoutOptions.logoutParams = logoutOptions.logoutParams || {};
+    logoutOptions.logoutParams.idToken = idToken;
     const url = this._buildLogoutUrl(logoutOptions);
 
     if (openUrl) {
@@ -1095,7 +1103,8 @@ export class Auth0Client {
       {
         baseUrl: this.domainUrl,
         client_id: this.options.clientId,
-        auth0Client: this.options.auth0Client,
+        client_secret: this.options.clientSecret,
+        icanidClient: this.options.icanidClient,
         useFormData: this.options.useFormData,
         timeout: this.httpTimeoutMs,
         ...options

@@ -1,6 +1,6 @@
 import { IdToken, User } from '../global';
 
-export const CACHE_KEY_PREFIX = '@@auth0spajs@@';
+export const CACHE_KEY_PREFIX = '@@icanidsdkspajs@@';
 export const CACHE_KEY_ID_TOKEN_SUFFIX = '@@user@@';
 
 export type CacheKeyData = {

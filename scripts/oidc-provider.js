@@ -7,8 +7,8 @@ policy.add(
   new Prompt(
     { name: 'noop', requestable: false },
     new Check('foo', 'bar', ctx => {
-      if (ctx.query?.scope?.includes('offline_access')) {
-        ctx.oidc.params.scope = `${ctx.oidc.params.scope} offline_access`;
+      if (ctx.query?.scope?.includes('offline')) {
+        ctx.oidc.params.scope = `${ctx.oidc.params.scope} offline`;
       }
       return Check.NO_NEED_TO_PROMPT;
     })
@@ -56,11 +56,11 @@ const config = {
     org_id: null
   },
   routes: {
-    authorization: '/authorize', // lgtm [js/hardcoded-credentials]
-    token: '/oauth/token',
-    end_session: '/v2/logout'
+    authorization: '/oauth2/auth', // lgtm [js/hardcoded-credentials]
+    token: '/oauth2/token',
+    end_session: '/oauth2/sessions/logout'
   },
-  scopes: ['openid', 'offline_access'],
+  scopes: ['openid', 'offline'],
   clientBasedCORS(ctx, origin, client) {
     return true;
   },

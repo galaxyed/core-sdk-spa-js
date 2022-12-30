@@ -44,7 +44,7 @@ export const INVALID_REFRESH_TOKEN_ERROR_MESSAGE = 'invalid refresh token';
 /**
  * @ignore
  */
-export const DEFAULT_SCOPE = 'openid profile email';
+export const DEFAULT_SCOPE = 'openid offline';
 
 /**
  * @ignore
@@ -55,7 +55,7 @@ export const DEFAULT_SESSION_CHECK_EXPIRY_DAYS = 1;
  * @ignore
  */
 export const DEFAULT_AUTH0_CLIENT = {
-  name: 'auth0-spa-js',
+  name: 'icanid-sdk-spa-js',
   version: version
 };
 

@@ -1,6 +1,6 @@
 import { ClientStorage } from './storage';
 
-const TRANSACTION_STORAGE_KEY_PREFIX = 'a0.spajs.txs';
+const TRANSACTION_STORAGE_KEY_PREFIX = 'icanid.sdkspajs.txs';
 
 interface Transaction {
   nonce: string;

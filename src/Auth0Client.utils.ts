@@ -10,24 +10,24 @@ import { getUniqueScopes } from './scope';
 /**
  * @ignore
  */
-export const GET_TOKEN_SILENTLY_LOCK_KEY = 'auth0.lock.getTokenSilently';
+export const GET_TOKEN_SILENTLY_LOCK_KEY = 'icanid.lock.getTokenSilently';
 
 /**
  * @ignore
  */
 export const buildOrganizationHintCookieName = (clientId: string) =>
-  `auth0.${clientId}.organization_hint`;
+  `icanid.${clientId}.organization_hint`;
 
 /**
  * @ignore
  */
-export const OLD_IS_AUTHENTICATED_COOKIE_NAME = 'auth0.is.authenticated';
+export const OLD_IS_AUTHENTICATED_COOKIE_NAME = 'icanid.is.authenticated';
 
 /**
  * @ignore
  */
 export const buildIsAuthenticatedCookieName = (clientId: string) =>
-  `auth0.${clientId}.is.authenticated`;
+  `icanid.${clientId}.is.authenticated`;
 
 /**
  * @ignore

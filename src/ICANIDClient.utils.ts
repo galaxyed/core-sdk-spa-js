@@ -1,6 +1,6 @@
 import { ICache, InMemoryCache, LocalStorageCache } from './cache';
 import {
-  Auth0ClientOptions,
+  ICANIDClientOptions,
   AuthorizationParams,
   AuthorizeOptions,
   LogoutOptions
@@ -48,7 +48,7 @@ export const cacheFactory = (location: string) => {
  * @ignore
  */
 export const getAuthorizeParams = (
-  clientOptions: Auth0ClientOptions & {
+  clientOptions: ICANIDClientOptions & {
     authorizationParams: AuthorizationParams;
   },
   scope: string,

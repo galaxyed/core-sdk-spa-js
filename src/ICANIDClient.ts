@@ -61,7 +61,7 @@ import {
 } from './constants';
 
 import {
-  Auth0ClientOptions,
+  ICANIDClientOptions,
   AuthorizationParams,
   AuthorizeOptions,
   RedirectLoginOptions,
@@ -91,7 +91,7 @@ import {
   GET_TOKEN_SILENTLY_LOCK_KEY,
   OLD_IS_AUTHENTICATED_COOKIE_NAME,
   patchOpenUrlWithOnRedirect
-} from './Auth0Client.utils';
+} from './ICANIDClient.utils';
 
 /**
  * @ignore
@@ -111,7 +111,7 @@ const lock = new Lock();
 /**
  * Auth0 SDK for Single Page Applications using [Authorization Code Grant Flow with PKCE](https://auth0.com/docs/api-auth/tutorials/authorization-code-grant-pkce).
  */
-export class Auth0Client {
+export class ICANIDClient {
   private readonly transactionManager: TransactionManager;
   private readonly cacheManager: CacheManager;
   private readonly domainUrl: string;
@@ -123,14 +123,14 @@ export class Auth0Client {
   private readonly isAuthenticatedCookieName: string;
   private readonly nowProvider: () => number | Promise<number>;
   private readonly httpTimeoutMs: number;
-  private readonly options: Auth0ClientOptions & {
+  private readonly options: ICANIDClientOptions & {
     authorizationParams: AuthorizationParams;
   };
   private readonly userCache: ICache = new InMemoryCache().enclosedCache;
 
   private worker?: Worker;
 
-  private readonly defaultOptions: Partial<Auth0ClientOptions> = {
+  private readonly defaultOptions: Partial<ICANIDClientOptions> = {
     authorizationParams: {
       scope: DEFAULT_SCOPE
     },
@@ -138,7 +138,7 @@ export class Auth0Client {
     useFormData: true
   };
 
-  constructor(options: Auth0ClientOptions) {
+  constructor(options: ICANIDClientOptions) {
     this.options = {
       ...this.defaultOptions,
       ...options,
@@ -152,7 +152,7 @@ export class Auth0Client {
 
     if (options.cache && options.cacheLocation) {
       console.warn(
-        'Both `cache` and `cacheLocation` options have been specified in the Auth0Client configuration; ignoring `cacheLocation` and using `cache`.'
+        'Both `cache` and `cacheLocation` options have been specified in the ICANIDClient configuration; ignoring `cacheLocation` and using `cache`.'
       );
     }
 
@@ -550,8 +550,8 @@ export class Auth0Client {
    * there was no previous login (or it has expired) then tokens will not be refreshed.
    *
    * It should be used for silently logging in the user when you instantiate the
-   * `Auth0Client` constructor. You should not need this if you are using the
-   * `createAuth0Client` factory.
+   * `ICANIDClient` constructor. You should not need this if you are using the
+   * `createICANIDClient` factory.
    *
    * **Note:** the cookie **may not** be present if running an app using a private tab, as some
    * browsers clear JS cookie data and local storage when the tab or page is closed, or on page reload. This effectively

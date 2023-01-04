@@ -114,7 +114,7 @@ interface BaseLoginOptions {
   authorizationParams?: AuthorizationParams;
 }
 
-export interface Auth0ClientOptions extends BaseLoginOptions {
+export interface ICANIDClientOptions extends BaseLoginOptions {
   /**
    * Your Auth0 account domain such as `'example.auth0.com'`,
    * `'example.eu.auth0.com'` or , `'example.mycompany.com'`
@@ -295,7 +295,7 @@ export interface RedirectLoginOptions<TAppState = any>
    * Used to control the redirect and not rely on the SDK to do the actual redirect.
    *
    * @example
-   * const client = new Auth0Client({
+   * const client = new ICANIDClient({
    *   async onRedirect(url) {
    *     window.location.replace(url);
    *   }
@@ -308,7 +308,7 @@ export interface RedirectLoginOptions<TAppState = any>
    * Used to control the redirect and not rely on the SDK to do the actual redirect.
    *
    * @example
-   * const client = new Auth0Client({
+   * const client = new ICANIDClient({
    *   async openUrl(url) {
    *     window.location.replace(url);
    *   }

@@ -134,6 +134,10 @@ export interface ICANIDClientOptions extends BaseLoginOptions {
    */
   clientSecret: string;
   /**
+   * The Client Secret Method found on your Application settings page
+   */
+  clientSecretMethod: string;
+  /**
    * The value in seconds used to account for clock skew in JWT expirations.
    * Typically, this value is no more than a minute or two at maximum.
    * Defaults to 60s.

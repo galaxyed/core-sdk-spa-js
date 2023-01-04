@@ -131,6 +131,7 @@ export class ICANIDClient {
   private worker?: Worker;
 
   private readonly defaultOptions: Partial<ICANIDClientOptions> = {
+    clientSecretMethod: 'client_secret_post',
     authorizationParams: {
       scope: DEFAULT_SCOPE
     },
@@ -1104,6 +1105,7 @@ export class ICANIDClient {
         baseUrl: this.domainUrl,
         client_id: this.options.clientId,
         client_secret: this.options.clientSecret,
+        clientSecretMethod: this.options.clientSecretMethod,
         icanidClient: this.options.icanidClient,
         useFormData: this.options.useFormData,
         timeout: this.httpTimeoutMs,

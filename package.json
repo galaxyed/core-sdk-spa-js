@@ -122,5 +122,8 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "dependencies": {
+    "js-base64": "^3.7.3"
   }
 }

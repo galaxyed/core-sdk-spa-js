@@ -1,5 +1,5 @@
 import { TokenEndpointOptions, TokenEndpointResponse } from './global';
-import { DEFAULT_AUTH0_CLIENT } from './constants';
+import { DEFAULT_ICANID_CLIENT } from './constants';
 import { getJSON } from './http';
 import { createQueryParams } from './utils';
 import { encode } from 'js-base64';
@@ -27,7 +27,7 @@ export async function oauthToken(
       : 'application/json',
     // TODO enable
     // 'ICANID-Client': btoa(
-    //   JSON.stringify(icanidClient || DEFAULT_AUTH0_CLIENT)
+    //   JSON.stringify(icanidClient || DEFAULT_ICANID_CLIENT)
     // )
   };
   if (clientSecretMethod == 'client_secret_basic') {

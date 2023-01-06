@@ -36,7 +36,7 @@ export interface AuthorizationParams {
   id_token_hint?: string;
 
   /**
-   * Provides a hint to Auth0 as to what flow should be displayed.
+   * Provides a hint to ICANID as to what flow should be displayed.
    * The default behavior is to show a login page but you can override
    * this by passing 'signup' to show the signup page instead.
    *
@@ -72,7 +72,7 @@ export interface AuthorizationParams {
 
   /**
    * The name of the connection configured for your application.
-   * If null, it will redirect to the Auth0 Login Page and show
+   * If null, it will redirect to the ICANID Login Page and show
    * the Login Widget.
    */
   connection?: string;
@@ -91,9 +91,9 @@ export interface AuthorizationParams {
   invitation?: string;
 
   /**
-   * The default URL where Auth0 will redirect your browser to with
+   * The default URL where ICANID will redirect your browser to with
    * the authentication result. It must be whitelisted in
-   * the "Allowed Callback URLs" field in your Auth0 Application's
+   * the "Allowed Callback URLs" field in your ICANID Application's
    * settings. If not provided here, it should be provided in the other
    * methods that provide authentication.
    */
@@ -109,14 +109,14 @@ export interface AuthorizationParams {
 interface BaseLoginOptions {
   /**
    * URL parameters that will be sent back to the Authorization Server. This can be known parameters
-   * defined by Auth0 or custom parameters that you define.
+   * defined by ICANID or custom parameters that you define.
    */
   authorizationParams?: AuthorizationParams;
 }
 
 export interface ICANIDClientOptions extends BaseLoginOptions {
   /**
-   * Your Auth0 account domain such as `'example.auth0.com'`,
+   * Your ICANID account domain such as `'example.auth0.com'`,
    * `'example.eu.auth0.com'` or , `'example.mycompany.com'`
    * (when using [custom domains](https://auth0.com/docs/custom-domains))
    */
@@ -148,7 +148,7 @@ export interface ICANIDClientOptions extends BaseLoginOptions {
    * The location to use when storing cache data. Valid values are `memory` or `localstorage`.
    * The default setting is `memory`.
    *
-   * Read more about [changing storage options in the Auth0 docs](https://auth0.com/docs/libraries/auth0-single-page-app-sdk#change-storage-options)
+   * Read more about [changing storage options in the ICANID docs](https://auth0.com/docs/libraries/auth0-single-page-app-sdk#change-storage-options)
    */
   cacheLocation?: CacheLocation;
 
@@ -158,10 +158,10 @@ export interface ICANIDClientOptions extends BaseLoginOptions {
   cache?: ICache;
 
   /**
-   * If true, refresh tokens are used to fetch new access tokens from the Auth0 server. If false, the legacy technique of using a hidden iframe and the `authorization_code` grant with `prompt=none` is used.
+   * If true, refresh tokens are used to fetch new access tokens from the ICANID server. If false, the legacy technique of using a hidden iframe and the `authorization_code` grant with `prompt=none` is used.
    * The default setting is `false`.
    *
-   * **Note**: Use of refresh tokens must be enabled by an administrator on your Auth0 client application.
+   * **Note**: Use of refresh tokens must be enabled by an administrator on your ICANID client application.
    */
   useRefreshTokens?: boolean;
 
@@ -253,8 +253,8 @@ export interface ICANIDClientOptions extends BaseLoginOptions {
   /**
    * If true, data to the token endpoint is transmitted as x-www-form-urlencoded data, if false it will be transmitted as JSON. The default setting is `true`.
    *
-   * **Note:** Setting this to `false` may affect you if you use Auth0 Rules and are sending custom, non-primitive data. If you disable this,
-   * please verify that your Auth0 Rules continue to work as intended.
+   * **Note:** Setting this to `false` may affect you if you use ICANID Rules and are sending custom, non-primitive data. If you disable this,
+   * please verify that your ICANID Rules continue to work as intended.
    */
   useFormData?: boolean;
 
@@ -348,23 +348,23 @@ export interface PopupConfigOptions {
 export interface GetTokenSilentlyOptions {
   /**
    * When `off`, ignores the cache and always sends a
-   * request to Auth0.
-   * When `cache-only`, only reads from the cache and never sends a request to Auth0.
-   * Defaults to `on`, where it both reads from the cache and sends a request to Auth0 as needed.
+   * request to ICANID.
+   * When `cache-only`, only reads from the cache and never sends a request to ICANID.
+   * Defaults to `on`, where it both reads from the cache and sends a request to ICANID as needed.
    */
   cacheMode?: 'on' | 'off' | 'cache-only';
 
   /**
-   * Parameters that will be sent back to Auth0 as part of a request.
+   * Parameters that will be sent back to ICANID as part of a request.
    */
   authorizationParams?: {
     /**
      * There's no actual redirect when getting a token silently,
      * but, according to the spec, a `redirect_uri` param is required.
-     * Auth0 uses this parameter to validate that the current `origin`
+     * ICANID uses this parameter to validate that the current `origin`
      * matches the `redirect_uri` `origin` when sending the response.
      * It must be whitelisted in the "Allowed Web Origins" in your
-     * Auth0 Application's settings.
+     * ICANID Application's settings.
      */
     redirect_uri?: string;
 
@@ -401,9 +401,9 @@ export interface GetTokenSilentlyOptions {
 
 export interface GetTokenWithPopupOptions extends PopupLoginOptions {
   /**
-   * When `off`, ignores the cache and always sends a request to Auth0.
-   * When `cache-only`, only reads from the cache and never sends a request to Auth0.
-   * Defaults to `on`, where it both reads from the cache and sends a request to Auth0 as needed.
+   * When `off`, ignores the cache and always sends a request to ICANID.
+   * When `cache-only`, only reads from the cache and never sends a request to ICANID.
+   * Defaults to `on`, where it both reads from the cache and sends a request to ICANID as needed.
    */
   cacheMode?: 'on' | 'off' | 'cache-only';
 }
@@ -421,26 +421,26 @@ export interface LogoutUrlOptions {
   clientId?: string;
 
   /**
-   * Parameters to pass to the logout endpoint. This can be known parameters defined by Auth0 or custom parameters
+   * Parameters to pass to the logout endpoint. This can be known parameters defined by ICANID or custom parameters
    * you wish to provide.
    */
   logoutParams?: {
     /**
      * When supported by the upstream identity provider,
      * forces the user to logout of their identity provider
-     * and from Auth0.
-     * [Read more about how federated logout works at Auth0](https://auth0.com/docs/logout/guides/logout-idps)
+     * and from ICANID.
+     * [Read more about how federated logout works at ICANID](https://auth0.com/docs/logout/guides/logout-idps)
      */
     federated?: boolean;
     /**
-     * The URL where Auth0 will redirect your browser to after the logout.
+     * The URL where ICANID will redirect your browser to after the logout.
      *
      * **Note**: If the `client_id` parameter is included, the
      * `returnTo` URL that is provided must be listed in the
-     * Application's "Allowed Logout URLs" in the Auth0 dashboard.
+     * Application's "Allowed Logout URLs" in the ICANID dashboard.
      * However, if the `client_id` parameter is not included, the
      * `returnTo` URL must be listed in the "Allowed Logout URLs" at
-     * the account level in the Auth0 dashboard.
+     * the account level in the ICANID dashboard.
      *
      * [Read more about how redirecting after logout works](https://auth0.com/docs/logout/guides/redirect-users-after-logout)
      */

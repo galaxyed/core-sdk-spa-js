@@ -19,7 +19,7 @@ export class GenericError extends Error {
 }
 
 /**
- * Thrown when handling the redirect callback fails, will be one of Auth0's
+ * Thrown when handling the redirect callback fails, will be one of ICANID's
  * Authentication API's Standard Error Responses: https://auth0.com/docs/api/authentication?javascript#standard-error-responses
  */
 export class AuthenticationError extends GenericError {

@@ -54,7 +54,7 @@ export const DEFAULT_SESSION_CHECK_EXPIRY_DAYS = 1;
 /**
  * @ignore
  */
-export const DEFAULT_AUTH0_CLIENT = {
+export const DEFAULT_ICANID_CLIENT = {
   name: 'icanid-sdk-spa-js',
   version: version
 };

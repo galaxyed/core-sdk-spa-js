@@ -54,7 +54,7 @@ import {
   MISSING_REFRESH_TOKEN_ERROR_MESSAGE,
   DEFAULT_SCOPE,
   DEFAULT_SESSION_CHECK_EXPIRY_DAYS,
-  DEFAULT_AUTH0_CLIENT,
+  DEFAULT_ICANID_CLIENT,
   INVALID_REFRESH_TOKEN_ERROR_MESSAGE,
   DEFAULT_NOW_PROVIDER,
   DEFAULT_FETCH_TIMEOUT_MS
@@ -109,7 +109,7 @@ type GetTokenSilentlyResult = TokenEndpointResponse & {
 const lock = new Lock();
 
 /**
- * Auth0 SDK for Single Page Applications using [Authorization Code Grant Flow with PKCE](https://auth0.com/docs/api-auth/tutorials/authorization-code-grant-pkce).
+ * ICANID SDK for Single Page Applications using [Authorization Code Grant Flow with PKCE](https://auth0.com/docs/api-auth/tutorials/authorization-code-grant-pkce).
  */
 export class ICANIDClient {
   private readonly transactionManager: TransactionManager;
@@ -237,7 +237,7 @@ export class ICANIDClient {
 
   private _url(path: string) {
     const icanidClient = encodeURIComponent(
-      btoa(JSON.stringify(this.options.icanidClient || DEFAULT_AUTH0_CLIENT))
+      btoa(JSON.stringify(this.options.icanidClient || DEFAULT_ICANID_CLIENT))
     );
     return `${this.domainUrl}${path}&icanidClient=${icanidClient}`;
   }
@@ -475,7 +475,7 @@ export class ICANIDClient {
   /**
    * After the browser redirects back to the callback page,
    * call `handleRedirectCallback` to handle success and error
-   * responses from Auth0. If the response is successful, results
+   * responses from ICANID. If the response is successful, results
    * will be valid according to their expiration times.
    */
   public async handleRedirectCallback<TAppState = any>(
@@ -547,7 +547,7 @@ export class ICANIDClient {
    * pre-fill the token cache.
    *
    * This method also heeds the `auth0.{clientId}.is.authenticated` cookie, as an optimization
-   *  to prevent calling Auth0 unnecessarily. If the cookie is not present because
+   *  to prevent calling ICANID unnecessarily. If the cookie is not present because
    * there was no previous login (or it has expired) then tokens will not be refreshed.
    *
    * It should be used for silently logging in the user when you instantiate the
@@ -822,10 +822,10 @@ export class ICANIDClient {
    * ```
    *
    * Clears the application session and performs a redirect to `/v2/logout`, using
-   * the parameters provided as arguments, to clear the Auth0 session.
+   * the parameters provided as arguments, to clear the ICANID session.
    *
    * If the `federated` option is specified it also clears the Identity Provider session.
-   * [Read more about how Logout works at Auth0](https://auth0.com/docs/logout).
+   * [Read more about how Logout works at ICANID](https://auth0.com/docs/logout).
    *
    * @param options
    */

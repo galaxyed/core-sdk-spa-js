@@ -178,7 +178,7 @@ export class CacheManager {
    * Finds the corresponding key in the cache based on the provided cache key.
    * The keys inside the cache are in the format {prefix}::{clientId}::{audience}::{scope}.
    * The first key in the cache that satisfies the following conditions is returned
-   *  - `prefix` is strict equal to Auth0's internally configured `keyPrefix`
+   *  - `prefix` is strict equal to ICANID's internally configured `keyPrefix`
    *  - `clientId` is strict equal to the `cacheKey.clientId`
    *  - `audience` is strict equal to the `cacheKey.audience`
    *  - `scope` contains at least all the `cacheKey.scope` values
